@@ -9,7 +9,6 @@ const port = process.env.PORT || 5000;
 app.use(express.json())
 app.use(cors())
 
-//pass:  craftersCove   fykYF8Dq1yAByAi5
 
 
 
