@@ -48,6 +48,32 @@ async function run() {
       res.send(result);
     })
 
+
+    app.put('/crafts/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) }
+      const options = {upsert: true}
+      const updatedCraft = req.body;
+      const craft = {
+        $set: {
+          photo : updatedCraft.photo,
+          item : updatedCraft.item,
+          sub : updatedCraft.sub,
+          price : updatedCraft.price,
+          rating : updatedCraft.rating,
+          customize : updatedCraft.customize,
+          processing : updatedCraft.processing,
+          stock : updatedCraft.stock,
+          description : updatedCraft.description
+        }
+      }
+
+      const result = await craftCollection.updateOne(filter, craft, options);
+      res.send(result)
+    })
+
+
+
     app.get('/craftsMail/:email', async (req, res) => {
       console.log(req.params.email)
       const myEmail = req.params.email;
