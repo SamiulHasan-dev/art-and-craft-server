@@ -48,6 +48,13 @@ async function run() {
       res.send(result);
     })
 
+    app.delete('/crafts/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await craftCollection.deleteOne(query);
+      res.send(result);
+    })
+
 
     app.put('/crafts/:id', async (req, res) => {
       const id = req.params.id;
@@ -79,9 +86,38 @@ async function run() {
       const myEmail = req.params.email;
       const query = { email: myEmail };
       console.log(myEmail)
+      
       const result = await craftCollection.find(query).toArray();
       res.send(result);
     })
+
+
+    app.get('/craftsMails/:email', async (req, res) => {
+      console.log(req.params.email)
+      const myEmail = req.params.email;
+      const query = { email: myEmail };
+      console.log(myEmail)
+      const options = {
+          sort: { customize: -1 } 
+      }
+      const result = await craftCollection.find(query, options).toArray();
+      res.send(result);
+  })
+
+
+  app.get('/myLists/:email', async (req, res) => {
+    console.log(req.params.email)
+    const myEmail = req.params.email;
+    const query = { userEmail: myEmail };
+    const options = {
+      sort: {averageCost: -1 }
+    }
+    console.log(myEmail)
+    const result = await touristSpotCollection.find(query, options).toArray();
+    res.send(result);
+  })
+
+  
 
 
     app.post('/crafts', async (req, res) => {
