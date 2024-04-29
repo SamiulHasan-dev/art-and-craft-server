@@ -52,6 +52,14 @@ async function run() {
       res.send(result);
     })
 
+    //id wise view
+    app.get('/arts/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) }
+      const result = await artCollection.findOne(query);
+      res.send(result);
+    })
+
     //Landscape Painting
     app.get('/landscape', async(req, res)=>{
       const query  = {
@@ -76,6 +84,36 @@ async function run() {
     app.get('/watercolour', async(req, res)=>{
       const query  = {
         sub : 'Watercolour Painting'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
+    //Oil Painting
+    app.get('/oil', async(req, res)=>{
+      const query  = {
+        sub : 'Oil Painting'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
+    //Charcoal Sketching
+    app.get('/charcoal', async(req, res)=>{
+      const query  = {
+        sub : 'Charcoal Sketching'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
+    //Cartoon Drawing
+    app.get('/cartoon', async(req, res)=>{
+      const query  = {
+        sub : 'Cartoon Drawing'
       }
       const cursor = artCollection.find(query);
       const result = await cursor.toArray()
