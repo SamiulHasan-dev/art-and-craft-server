@@ -44,6 +44,44 @@ async function run() {
       res.send(result);
     })
 
+    //all
+    app.get('/arts', async(req, res)=>{
+      // const id = req.body();
+      const cursor = artCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+    //Landscape Painting
+    app.get('/landscape', async(req, res)=>{
+      const query  = {
+        sub : 'Landscape Painting'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
+    //Portrait Drawing
+    app.get('/portrait', async(req, res)=>{
+      const query  = {
+        sub : 'Portrait Drawing'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
+    //Watercolour Painting
+    app.get('/watercolour', async(req, res)=>{
+      const query  = {
+        sub : 'Watercolour Painting'
+      }
+      const cursor = artCollection.find(query);
+      const result = await cursor.toArray()
+      res.send(result)
+    })
+
 
     /*  */
 
