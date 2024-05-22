@@ -175,7 +175,6 @@ async function run() {
       const myEmail = req.params.email;
       const query = { email: myEmail };
       console.log(myEmail)
-      
       const result = await craftCollection.find(query).toArray();
       res.send(result);
     })
